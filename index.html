@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Think → Reach | Robotics Education</title>
+    <style>
+        /* --- CORE STYLES (Adapted from your Drone Example) --- */
+        :root {
+            --primary: #2c3e50;    /* Dark Blue */
+            --secondary: #e67e22;  /* Robot Orange */
+            --accent: #3498db;     /* Tech Blue */
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f7fa; color: #333; line-height: 1.6; scroll-behavior: smooth; }
+        
+        /* HEADER */
+        header { background-color: var(--primary); color: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }
+        .logo span { color: var(--secondary); }
+        
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 20px; }
+        nav ul li a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
+        nav ul li a:hover { color: var(--secondary); }
+        
+        /* HERO SECTION */
+        .hero {
+            /* Robot Background Image */
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-position: center;
+            color: white; padding: 6rem 0; text-align: center;
+        }
+        .hero h2 { font-size: 3rem; margin-bottom: 1rem; }
+        .hero p { font-size: 1.3rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9; }
+        .btn { background-color: var(--secondary); color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-block; }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4); }
+
+        /* SECTIONS */
+        .section { padding: 4rem 0; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section-title h2 { font-size: 2rem; color: var(--primary); display: inline-block; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; }
+        
+        /* VIDEO GALLERY */
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; }
+        .video-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .video-header { padding: 1.5rem; background: var(--primary); color: white; }
+        .video-placeholder { height: 250px; background: #333; display: flex; align-items: center; justify-content: center; color: #777; }
+        .video-desc { padding: 1.5rem; }
+
+        /* SIMULATOR (Customized for Robot Arm) */
+        .simulator-section { background-color: white; }
+        .sim-container { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start; }
+        canvas { background: #fafafa; border: 2px solid #ddd; border-radius: 8px; box-shadow: inset 0 0 20px rgba(0,0,0,0.05); }
+        .sim-controls { flex: 1; min-width: 300px; background: #f8f9fa; padding: 2rem; border-radius: 10px; }
+        input[type="range"] { width: 100%; margin: 10px 0 20px; cursor: pointer; }
+        .data-box { background: #2c3e50; color: #2ecc71; padding: 15px; font-family: monospace; border-radius: 5px; margin-top: 20px; }
+
+        /* TEAM */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .member-card { background: white; padding: 2rem; text-align: center; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
+        .member-card:hover { transform: translateY(-5px); }
+        .member-avatar { width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 1rem; background-size: cover; }
+        
+        /* REFLECTION */
+        .reflection-box { background: white; padding: 2rem; border-left: 5px solid var(--secondary); border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+
+        /* FOOTER */
+        footer { background: var(--dark); color: white; text-align: center; padding: 2rem 0; margin-top: 2rem; }
+
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; }
+            nav ul { margin-top: 1rem; }
+            .hero h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>THINK <span>→</span> REACH</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#videos">Videos</a></li>
+                    <li><a href="#simulator">Lab</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#reflection">Reflection</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Mastering Robot Perception</h2>
+            <p>An educational journey through Forward Kinematics and Sensors. Bridging the gap between simple curiosity and engineering rigor.</p>
+            <a href="#simulator" class="btn">Launch Simulator</a>
+        </div>
+    </section>
+
+    <section id="videos" class="section">
+        <div class="container">
+            <div class="section-title"><h2>Video Series</h2></div>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-header">
+                        <h3>Level 1: The Beginner's Guide</h3>
+                        <small>Target: Secondary School (Ages 13-17)</small>
+                    </div>
+                    <div class="video-placeholder">
+                        <p>[ Aleeya's Video Goes Here ]</p>
+                    </div>
+                    <div class="video-desc">
+                        <p><strong>Focus:</strong> Intuitive learning using analogies. How is a robot arm like a human arm? How do sensors work like eyes?</p>
+                    </div>
+                </div>
+                
+                <div class="video-card">
+                    <div class="video-header">
+                        <h3>Level 2: Advanced Engineering</h3>
+                        <small>Target: Undergraduate / Technical</small>
+                    </div>
+                    <div class="video-placeholder">
+                        <p>[ Ain & Hanah's Video Goes Here ]</p>
+                    </div>
+                    <div class="video-desc">
+                        <p><strong>Focus:</strong> Forward Kinematics derivation, Transformation Matrices, and Sensor Noise modeling.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulator" class="section simulator-section">
+        <div class="container">
+            <div class="section-title"><h2>Interactive Lab</h2></div>
+            <p style="text-align: center; margin-bottom: 30px;">Visualize <strong>Forward Kinematics</strong> (Movement) and <strong>LIDAR/Ultrasonic Sensing</strong> (Perception) in real-time.</p>
+            
+            <div class="sim-container">
+                <canvas id="robotCanvas" width="500" height="400"></canvas>
+                
+                <div class="sim-controls">
+                    <h3>Control Panel</h3>
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #ddd;">
+                    
+                    <label><strong>Joint 1 (Theta 1):</strong> <span id="val1">0</span>°</label>
+                    <input type="range" id="theta1" min="-90" max="90" value="0">
+                    
+                    <label><strong>Joint 2 (Theta 2):</strong> <span id="val2">45</span>°</label>
+                    <input type="range" id="theta2" min="-120" max="120" value="45">
+
+                    <div class="data-box">
+                        <p><strong>SENSOR TELEMETRY</strong></p>
+                        <p>End-Effector X: <span id="posX">0</span></p>
+                        <p>End-Effector Y: <span id="posY">0</span></p>
+                        <p>Distance to Floor: <span id="dist">0</span> cm</p>
+                    </div>
+                    
+                    <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">
+                        *Simulates mathematical derivation: <br>
+                        <em>x = L1*cos(θ1) + L2*cos(θ1+θ2)</em>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="section">
+        <div class="container">
+            <div class="section-title"><h2>The Team</h2></div>
+            <div class="team-grid">
+                <div class="member-card">
+                    <div class="member-avatar" style="background-color: #3498db;"></div>
+                    <h3>Nurain Zafrany</h3>
+                    <p style="color: var(--secondary); font-weight: bold;">The Mathematician</p>
+                    <p><small>Forward Kinematics Derivation</small></p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar" style="background-color: #9b59b6;"></div>
+                    <h3>Nurfara Hanah</h3>
+                    <p style="color: var(--secondary); font-weight: bold;">The Tech Editor</p>
+                    <p><small>Sensor Fusion & Video</small></p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar" style="background-color: #e67e22;"></div>
+                    <h3>Nur Aleeya</h3>
+                    <p style="color: var(--secondary); font-weight: bold;">The Creative Lead</p>
+                    <p><small>Storytelling & Report</small></p>
+                </div>
+                <div class="member-card">
+                    <div class="member-avatar" style="background-color: #2c3e50;"></div>
+                    <h3>Farhah Natasha</h3>
+                    <p style="color: var(--secondary); font-weight: bold;">Digital Architect</p>
+                    <p><small>Platform Development</small></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reflection" class="section" style="background: #fafafa;">
+        <div class="container">
+            <div class="section-title"><h2>Reflection Report</h2></div>
+            <div class="reflection-box">
+                <h3 style="margin-bottom: 1rem;">Adapting Communication for Diverse Audiences</h3>
+                <p>[ <strong>PLACEHOLDER FOR ALEEYA'S TEXT</strong> ]</p>
+                <p>Wait for Aleeya to send the 500-800 word report on Sunday. When she does, delete this text and paste hers right here. You can simply use paragraph tags.</p>
+                <br>
+                <h4>References</h4>
+                <ul>
+                    <li>Ouyang, F., & Xu, W. (2024). The effects of educational robotics in STEM education.</li>
+                    <li>CSC4702 Course Syllabus, Sem 1 2025/2026.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>CSC4702 Robotic System Development | Semester 1 2025/2026</p>
+            <p>&copy; 2026 Group Project Team. Universiti Putra Malaysia.</p>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('robotCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Robot Config
+        const baseX = 250; 
+        const baseY = 300;
+        const L1 = 100;
+        const L2 = 80;
+
+        // UI Elements
+        const slider1 = document.getElementById('theta1');
+        const slider2 = document.getElementById('theta2');
+        const val1 = document.getElementById('val1');
+        const val2 = document.getElementById('val2');
+        const dispX = document.getElementById('posX');
+        const dispY = document.getElementById('posY');
+        const dispDist = document.getElementById('dist');
+
+        function drawRobot() {
+            // Clear Canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Get Angles
+            let t1 = parseInt(slider1.value);
+            let t2 = parseInt(slider2.value);
+            
+            // Update Labels
+            val1.innerText = t1;
+            val2.innerText = t2;
+
+            // Convert to Radians (Inverted for Canvas Y-axis)
+            let rad1 = (t1 * -1) * (Math.PI / 180);
+            let rad2 = (t2 * -1) * (Math.PI / 180);
+
+            // Forward Kinematics Math
+            let x1 = baseX + L1 * Math.cos(Math.PI/2 + rad1);
+            let y1 = baseY - L1 * Math.sin(Math.PI/2 + rad1);
+
+            let x2 = x1 + L2 * Math.cos(Math.PI/2 + rad1 + rad2);
+            let y2 = y1 - L2 * Math.sin(Math.PI/2 + rad1 + rad2);
+
+            // Draw Floor
+            ctx.beginPath(); ctx.moveTo(0, 350); ctx.lineTo(500, 350);
+            ctx.lineWidth = 4; ctx.strokeStyle = "#95a5a6"; ctx.stroke();
+
+            // Draw Robot Base
+            ctx.fillStyle = "#2c3e50"; ctx.fillRect(baseX-20, baseY, 40, 50);
+
+            // Draw Link 1
+            ctx.beginPath(); ctx.moveTo(baseX, baseY); ctx.lineTo(x1, y1);
+            ctx.lineWidth = 12; ctx.strokeStyle = "#3498db"; ctx.stroke(); // Blue
+
+            // Draw Link 2
+            ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
+            ctx.lineWidth = 10; ctx.strokeStyle = "#e67e22"; ctx.stroke(); // Orange
+
+            // Draw Joints
+            ctx.fillStyle = "#f1c40f"; // Yellow
+            ctx.beginPath(); ctx.arc(baseX, baseY, 8, 0, Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(x1, y1, 8, 0, Math.PI*2); ctx.fill();
+            
+            // Draw End Effector
+            ctx.fillStyle = "#e74c3c"; // Red
+            ctx.beginPath(); ctx.arc(x2, y2, 10, 0, Math.PI*2); ctx.fill();
+
+            // Sensor Simulation (Laser Beam)
+            ctx.beginPath();
+            ctx.moveTo(x2, y2);
+            let beamX = x2 + 800 * Math.cos(Math.PI/2 + rad1 + rad2);
+            let beamY = y2 - 800 * Math.sin(Math.PI/2 + rad1 + rad2);
+            
+            ctx.lineTo(beamX, beamY);
+            ctx.strokeStyle = "rgba(46, 204, 113, 0.5)"; // Green Laser
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Update Telemetry
+            dispX.innerText = Math.round(x2 - baseX);
+            dispY.innerText = Math.round(baseY - y2);
+            
+            // Calculate distance to floor (y=350)
+            let dist = Math.max(0, 350 - y2);
+            dispDist.innerText = Math.round(dist);
+        }
+
+        slider1.addEventListener('input', drawRobot);
+        slider2.addEventListener('input', drawRobot);
+        
+        // Init
+        drawRobot();
+    </script>
+</body>
+</html>
