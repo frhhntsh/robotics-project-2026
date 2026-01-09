@@ -3,80 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Think → Reach | Robotics Education</title>
+    <title>Think → Reach | Fun Robotics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* --- CORE STYLES (Adapted from your Drone Example) --- */
+        /* --- GIRLY / KIDS THEME VARIABLES --- */
         :root {
-            --primary: #2c3e50;    /* Dark Blue */
-            --secondary: #e67e22;  /* Robot Orange */
-            --accent: #3498db;     /* Tech Blue */
-            --light: #ecf0f1;
-            --dark: #2c3e50;
+            --primary: #6c5ce7;    /* Soft Purple */
+            --secondary: #fd79a8;  /* Bubblegum Pink */
+            --accent: #00b894;     /* Mint Green */
+            --bg-color: #f3f0ff;   /* Very Light Lavender */
+            --text-dark: #2d3436;
+            --card-white: #ffffff;
         }
         
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f5f7fa; color: #333; line-height: 1.6; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Nunito', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; scroll-behavior: smooth; }
         
-        /* HEADER */
-        header { background-color: var(--primary); color: white; padding: 1rem 0; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        /* HEADER - Playful & Bright */
+        header { 
+            background: linear-gradient(90deg, var(--primary), var(--secondary)); 
+            color: white; 
+            padding: 1rem 0; 
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.2); 
+            position: sticky; top: 0; z-index: 1000; 
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
         .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: 1px; }
-        .logo span { color: var(--secondary); }
+        .logo h1 { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; text-shadow: 2px 2px 0px rgba(0,0,0,0.1); }
+        .logo span { color: #ffeaa7; } /* Cream Yellow Arrow */
         
         nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 20px; }
-        nav ul li a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
-        nav ul li a:hover { color: var(--secondary); }
-        
-        /* HERO SECTION */
-        .hero {
-            /* Robot Background Image */
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover; background-position: center;
-            color: white; padding: 6rem 0; text-align: center;
+        nav ul li a { 
+            color: white; text-decoration: none; font-weight: 700; font-size: 1.1rem; 
+            padding: 8px 15px; border-radius: 20px; transition: 0.3s; 
         }
-        .hero h2 { font-size: 3rem; margin-bottom: 1rem; }
-        .hero p { font-size: 1.3rem; max-width: 700px; margin: 0 auto 2rem; opacity: 0.9; }
-        .btn { background-color: var(--secondary); color: white; padding: 12px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s; display: inline-block; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4); }
+        nav ul li a:hover { background-color: rgba(255,255,255,0.2); transform: scale(1.05); }
+        
+        /* HERO SECTION - Colorful & Inviting */
+        .hero {
+            /* Cute gradient instead of dark photo */
+            background: linear-gradient(135deg, #a29bfe, #74b9ff);
+            color: white; padding: 6rem 0; text-align: center;
+            border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;
+        }
+        .hero h2 { font-size: 3.5rem; margin-bottom: 0.5rem; font-weight: 900; }
+        .hero p { font-size: 1.5rem; max-width: 700px; margin: 0 auto 2rem; font-weight: 600; }
+        .btn { 
+            background-color: var(--secondary); color: white; padding: 15px 40px; 
+            border-radius: 50px; text-decoration: none; font-weight: 900; font-size: 1.2rem;
+            transition: 0.3s; display: inline-block; 
+            box-shadow: 0 8px 0px #e84393; /* 3D Button Effect */
+            transform: translateY(-4px);
+        }
+        .btn:active { transform: translateY(0); box-shadow: 0 4px 0px #e84393; } /* Click effect */
+        .btn:hover { background-color: #ff8bb2; }
 
         /* SECTIONS */
         .section { padding: 4rem 0; }
         .section-title { text-align: center; margin-bottom: 3rem; }
-        .section-title h2 { font-size: 2rem; color: var(--primary); display: inline-block; border-bottom: 3px solid var(--secondary); padding-bottom: 10px; }
+        .section-title h2 { 
+            font-size: 2.5rem; color: var(--primary); display: inline-block; 
+            background: #ffeaa7; padding: 0 20px; border-radius: 20px; transform: rotate(-2deg);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+        }
         
-        /* VIDEO GALLERY */
+        /* VIDEO GALLERY - Card Style */
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; }
-        .video-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .video-header { padding: 1.5rem; background: var(--primary); color: white; }
-        .video-placeholder { height: 250px; background: #333; display: flex; align-items: center; justify-content: center; color: #777; }
-        .video-desc { padding: 1.5rem; }
+        .video-card { 
+            background: white; border-radius: 25px; overflow: hidden; 
+            box-shadow: 0 10px 25px rgba(108, 92, 231, 0.15); border: 4px solid white;
+        }
+        .video-header { padding: 1.5rem; background: var(--accent); color: white; text-align: center; }
+        .video-placeholder { 
+            height: 250px; background: #dfe6e9; display: flex; align-items: center; justify-content: center; 
+            color: #b2bec3; font-weight: bold; border-top: 4px solid white; border-bottom: 4px solid white;
+        }
+        .video-desc { padding: 1.5rem; color: #636e72; }
 
-        /* SIMULATOR (Customized for Robot Arm) */
-        .simulator-section { background-color: white; }
+        /* SIMULATOR (Cute Robot Style) */
+        .simulator-section { background-color: #fff; border-radius: 40px; margin: 20px; }
         .sim-container { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start; }
-        canvas { background: #fafafa; border: 2px solid #ddd; border-radius: 8px; box-shadow: inset 0 0 20px rgba(0,0,0,0.05); }
-        .sim-controls { flex: 1; min-width: 300px; background: #f8f9fa; padding: 2rem; border-radius: 10px; }
-        input[type="range"] { width: 100%; margin: 10px 0 20px; cursor: pointer; }
-        .data-box { background: #2c3e50; color: #2ecc71; padding: 15px; font-family: monospace; border-radius: 5px; margin-top: 20px; }
+        canvas { 
+            background: #fbfbfb; border: 4px solid var(--primary); border-radius: 20px; 
+            box-shadow: 8px 8px 0px rgba(108, 92, 231, 0.2);
+        }
+        .sim-controls { 
+            flex: 1; min-width: 300px; background: #ffeaa7; padding: 2rem; 
+            border-radius: 25px; border: 4px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        input[type="range"] { 
+            width: 100%; margin: 10px 0 20px; cursor: pointer; accent-color: var(--secondary);
+        }
+        .data-box { 
+            background: white; color: var(--primary); padding: 15px; font-family: 'Nunito', sans-serif; font-weight: 700;
+            border-radius: 15px; margin-top: 20px; border: 2px solid var(--primary);
+        }
 
-        /* TEAM */
+        /* TEAM - Avatars */
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
-        .member-card { background: white; padding: 2rem; text-align: center; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; }
-        .member-card:hover { transform: translateY(-5px); }
-        .member-avatar { width: 80px; height: 80px; background: #ddd; border-radius: 50%; margin: 0 auto 1rem; background-size: cover; }
+        .member-card { 
+            background: white; padding: 2rem; text-align: center; border-radius: 25px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s; 
+            border-bottom: 6px solid var(--secondary);
+        }
+        .member-card:hover { transform: translateY(-10px); }
+        .member-avatar { 
+            width: 100px; height: 100px; background: #dfe6e9; border-radius: 50%; margin: 0 auto 1rem; 
+            border: 4px solid var(--accent);
+        }
         
         /* REFLECTION */
-        .reflection-box { background: white; padding: 2rem; border-left: 5px solid var(--secondary); border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .reflection-box { 
+            background: white; padding: 3rem; border-radius: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); position: relative;
+        }
+        .reflection-box::before {
+            content: "💡"; font-size: 3rem; position: absolute; top: -25px; left: 30px;
+        }
 
         /* FOOTER */
-        footer { background: var(--dark); color: white; text-align: center; padding: 2rem 0; margin-top: 2rem; }
+        footer { background: var(--primary); color: white; text-align: center; padding: 3rem 0; margin-top: 4rem; }
+        footer p { opacity: 0.8; }
 
         @media (max-width: 768px) {
             .header-content { flex-direction: column; }
-            nav ul { margin-top: 1rem; }
-            .hero h2 { font-size: 2rem; }
+            nav ul { margin-top: 1rem; flex-wrap: wrap; justify-content: center; }
+            .hero h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -91,9 +144,9 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#videos">Videos</a></li>
-                    <li><a href="#simulator">Lab</a></li>
+                    <li><a href="#simulator">Play Lab</a></li>
                     <li><a href="#team">Team</a></li>
-                    <li><a href="#reflection">Reflection</a></li>
+                    <li><a href="#reflection">Notes</a></li>
                 </ul>
             </nav>
         </div>
@@ -101,39 +154,39 @@
 
     <section id="home" class="hero">
         <div class="container">
-            <h2>Mastering Robot Perception</h2>
-            <p>An educational journey through Forward Kinematics and Sensors. Bridging the gap between simple curiosity and engineering rigor.</p>
-            <a href="#simulator" class="btn">Launch Simulator</a>
+            <h2>Let's Learn Robotics!</h2>
+            <p>Discover how robots "Think" and "See". A fun journey into math and sensors for everyone.</p>
+            <a href="#simulator" class="btn">Start Playing! 🎮</a>
         </div>
     </section>
 
     <section id="videos" class="section">
         <div class="container">
-            <div class="section-title"><h2>Video Series</h2></div>
+            <div class="section-title"><h2>Watch & Learn</h2></div>
             <div class="video-grid">
                 <div class="video-card">
-                    <div class="video-header">
-                        <h3>Level 1: The Beginner's Guide</h3>
-                        <small>Target: Secondary School (Ages 13-17)</small>
+                    <div class="video-header" style="background-color: var(--secondary);">
+                        <h3>🌟 For Beginners</h3>
+                        <small>Junior School (Ages 13-17)</small>
                     </div>
                     <div class="video-placeholder">
-                        <p>[ Aleeya's Video Goes Here ]</p>
+                        <p>[ Aleeya's Fun Video ]</p>
                     </div>
                     <div class="video-desc">
-                        <p><strong>Focus:</strong> Intuitive learning using analogies. How is a robot arm like a human arm? How do sensors work like eyes?</p>
+                        <p><strong>Let's Explore:</strong> How is a robot arm like your arm? How do robots use "superpowers" to see?</p>
                     </div>
                 </div>
                 
                 <div class="video-card">
-                    <div class="video-header">
-                        <h3>Level 2: Advanced Engineering</h3>
-                        <small>Target: Undergraduate / Technical</small>
+                    <div class="video-header" style="background-color: var(--primary);">
+                        <h3>🎓 For Experts</h3>
+                        <small>Undergraduate / Technical</small>
                     </div>
                     <div class="video-placeholder">
-                        <p>[ Ain & Hanah's Video Goes Here ]</p>
+                        <p>[ Ain & Hanah's Tech Video ]</p>
                     </div>
                     <div class="video-desc">
-                        <p><strong>Focus:</strong> Forward Kinematics derivation, Transformation Matrices, and Sensor Noise modeling.</p>
+                        <p><strong>Deep Dive:</strong> The math behind the movement! Transformation Matrices & Sensor noise.</p>
                     </div>
                 </div>
             </div>
@@ -142,32 +195,33 @@
 
     <section id="simulator" class="section simulator-section">
         <div class="container">
-            <div class="section-title"><h2>Interactive Lab</h2></div>
-            <p style="text-align: center; margin-bottom: 30px;">Visualize <strong>Forward Kinematics</strong> (Movement) and <strong>LIDAR/Ultrasonic Sensing</strong> (Perception) in real-time.</p>
+            <div class="section-title"><h2>Interactive Robot Lab</h2></div>
+            <p style="text-align: center; margin-bottom: 30px; font-size: 1.2rem;">
+                Move the sliders to control the <strong>Robot Arm</strong> and see the <strong>Sensor Beam</strong>! ✨
+            </p>
             
             <div class="sim-container">
                 <canvas id="robotCanvas" width="500" height="400"></canvas>
                 
                 <div class="sim-controls">
-                    <h3>Control Panel</h3>
-                    <hr style="margin: 10px 0; border: 0; border-top: 1px solid #ddd;">
+                    <h3>🎮 Control Panel</h3>
+                    <hr style="margin: 15px 0; border: 0; border-top: 2px dashed white;">
                     
-                    <label><strong>Joint 1 (Theta 1):</strong> <span id="val1">0</span>°</label>
+                    <label><strong>Joint 1 (Shoulder):</strong> <span id="val1">0</span>°</label>
                     <input type="range" id="theta1" min="-90" max="90" value="0">
                     
-                    <label><strong>Joint 2 (Theta 2):</strong> <span id="val2">45</span>°</label>
+                    <label><strong>Joint 2 (Elbow):</strong> <span id="val2">45</span>°</label>
                     <input type="range" id="theta2" min="-120" max="120" value="45">
 
                     <div class="data-box">
-                        <p><strong>SENSOR TELEMETRY</strong></p>
-                        <p>End-Effector X: <span id="posX">0</span></p>
-                        <p>End-Effector Y: <span id="posY">0</span></p>
+                        <p><strong>📊 ROBOT DATA</strong></p>
+                        <p>Hand Position X: <span id="posX">0</span></p>
+                        <p>Hand Position Y: <span id="posY">0</span></p>
                         <p>Distance to Floor: <span id="dist">0</span> cm</p>
                     </div>
                     
-                    <p style="font-size: 0.8rem; margin-top: 10px; color: #666;">
-                        *Simulates mathematical derivation: <br>
-                        <em>x = L1*cos(θ1) + L2*cos(θ1+θ2)</em>
+                    <p style="font-size: 0.9rem; margin-top: 15px; color: #555;">
+                        <em>*Math Magic: x = L1*cos(θ1) + L2*cos(θ1+θ2)</em>
                     </p>
                 </div>
             </div>
@@ -176,46 +230,46 @@
 
     <section id="team" class="section">
         <div class="container">
-            <div class="section-title"><h2>The Team</h2></div>
+            <div class="section-title"><h2>Meet The Team</h2></div>
             <div class="team-grid">
                 <div class="member-card">
-                    <div class="member-avatar" style="background-color: #3498db;"></div>
+                    <div class="member-avatar" style="background-color: var(--secondary);"></div>
                     <h3>Nurain Zafrany</h3>
-                    <p style="color: var(--secondary); font-weight: bold;">The Mathematician</p>
-                    <p><small>Forward Kinematics Derivation</small></p>
+                    <p style="color: var(--primary); font-weight: 800;">The Mathematician</p>
+                    <p><small>Calculates the Moves</small></p>
                 </div>
                 <div class="member-card">
-                    <div class="member-avatar" style="background-color: #9b59b6;"></div>
+                    <div class="member-avatar" style="background-color: var(--accent);"></div>
                     <h3>Nurfara Hanah</h3>
-                    <p style="color: var(--secondary); font-weight: bold;">The Tech Editor</p>
-                    <p><small>Sensor Fusion & Video</small></p>
+                    <p style="color: var(--primary); font-weight: 800;">The Tech Editor</p>
+                    <p><small>Sensor Expert</small></p>
                 </div>
                 <div class="member-card">
-                    <div class="member-avatar" style="background-color: #e67e22;"></div>
+                    <div class="member-avatar" style="background-color: #fab1a0;"></div>
                     <h3>Nur Aleeya</h3>
-                    <p style="color: var(--secondary); font-weight: bold;">The Creative Lead</p>
-                    <p><small>Storytelling & Report</small></p>
+                    <p style="color: var(--primary); font-weight: 800;">Creative Lead</p>
+                    <p><small>The Storyteller</small></p>
                 </div>
                 <div class="member-card">
-                    <div class="member-avatar" style="background-color: #2c3e50;"></div>
+                    <div class="member-avatar" style="background-color: #a29bfe;"></div>
                     <h3>Farhah Natasha</h3>
-                    <p style="color: var(--secondary); font-weight: bold;">Digital Architect</p>
-                    <p><small>Platform Development</small></p>
+                    <p style="color: var(--primary); font-weight: 800;">Digital Architect</p>
+                    <p><small>Web Builder</small></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="reflection" class="section" style="background: #fafafa;">
+    <section id="reflection" class="section" style="background: white;">
         <div class="container">
-            <div class="section-title"><h2>Reflection Report</h2></div>
+            <div class="section-title"><h2>Our Thoughts</h2></div>
             <div class="reflection-box">
-                <h3 style="margin-bottom: 1rem;">Adapting Communication for Diverse Audiences</h3>
-                <p>[ <strong>PLACEHOLDER FOR ALEEYA'S TEXT</strong> ]</p>
-                <p>Wait for Aleeya to send the 500-800 word report on Sunday. When she does, delete this text and paste hers right here. You can simply use paragraph tags.</p>
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">Adapting Communication for Everyone</h3>
+                <p>[ <strong>PLACEHOLDER FOR ALEEYA'S REPORT</strong> ]</p>
+                <p><em>(Farhah, paste Aleeya's text here on Sunday! It will look super professional in this box.)</em></p>
                 <br>
-                <h4>References</h4>
-                <ul>
+                <h4 style="color: var(--text-dark);">📚 References</h4>
+                <ul style="margin-left: 20px; color: #636e72;">
                     <li>Ouyang, F., & Xu, W. (2024). The effects of educational robotics in STEM education.</li>
                     <li>CSC4702 Course Syllabus, Sem 1 2025/2026.</li>
                 </ul>
@@ -225,8 +279,8 @@
 
     <footer>
         <div class="container">
-            <p>CSC4702 Robotic System Development | Semester 1 2025/2026</p>
-            <p>&copy; 2026 Group Project Team. Universiti Putra Malaysia.</p>
+            <p>Made with 💖 by the CSC4702 Robotics Team</p>
+            <p>Universiti Putra Malaysia | Sem 1 2025/2026</p>
         </div>
     </footer>
 
@@ -274,27 +328,29 @@
 
             // Draw Floor
             ctx.beginPath(); ctx.moveTo(0, 350); ctx.lineTo(500, 350);
-            ctx.lineWidth = 4; ctx.strokeStyle = "#95a5a6"; ctx.stroke();
+            ctx.lineWidth = 4; ctx.strokeStyle = "#b2bec3"; ctx.stroke();
 
             // Draw Robot Base
-            ctx.fillStyle = "#2c3e50"; ctx.fillRect(baseX-20, baseY, 40, 50);
+            ctx.fillStyle = "#636e72"; ctx.fillRect(baseX-20, baseY, 40, 50);
 
-            // Draw Link 1
+            // Draw Link 1 (CANDY PINK)
             ctx.beginPath(); ctx.moveTo(baseX, baseY); ctx.lineTo(x1, y1);
-            ctx.lineWidth = 12; ctx.strokeStyle = "#3498db"; ctx.stroke(); // Blue
+            ctx.lineWidth = 14; ctx.strokeStyle = "#fd79a8"; ctx.stroke(); 
+            ctx.lineCap = "round";
 
-            // Draw Link 2
+            // Draw Link 2 (MINT GREEN)
             ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
-            ctx.lineWidth = 10; ctx.strokeStyle = "#e67e22"; ctx.stroke(); // Orange
+            ctx.lineWidth = 12; ctx.strokeStyle = "#00b894"; ctx.stroke();
+            ctx.lineCap = "round";
 
-            // Draw Joints
-            ctx.fillStyle = "#f1c40f"; // Yellow
+            // Draw Joints (YELLOW)
+            ctx.fillStyle = "#ffeaa7"; 
             ctx.beginPath(); ctx.arc(baseX, baseY, 8, 0, Math.PI*2); ctx.fill();
             ctx.beginPath(); ctx.arc(x1, y1, 8, 0, Math.PI*2); ctx.fill();
             
-            // Draw End Effector
-            ctx.fillStyle = "#e74c3c"; // Red
-            ctx.beginPath(); ctx.arc(x2, y2, 10, 0, Math.PI*2); ctx.fill();
+            // Draw End Effector (PURPLE)
+            ctx.fillStyle = "#6c5ce7"; 
+            ctx.beginPath(); ctx.arc(x2, y2, 12, 0, Math.PI*2); ctx.fill();
 
             // Sensor Simulation (Laser Beam)
             ctx.beginPath();
@@ -303,9 +359,9 @@
             let beamY = y2 - 800 * Math.sin(Math.PI/2 + rad1 + rad2);
             
             ctx.lineTo(beamX, beamY);
-            ctx.strokeStyle = "rgba(46, 204, 113, 0.5)"; // Green Laser
-            ctx.lineWidth = 2;
-            ctx.setLineDash([5, 5]);
+            ctx.strokeStyle = "rgba(253, 121, 168, 0.5)"; // Pink Laser
+            ctx.lineWidth = 3;
+            ctx.setLineDash([10, 10]);
             ctx.stroke();
             ctx.setLineDash([]);
 
