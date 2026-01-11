@@ -6,7 +6,6 @@
     <title>Think → Reach | Future Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- FUTURE TECH VARIABLES --- */
         :root {
             --neon-blue: #00f3ff;
             --neon-pink: #bc13fe;
@@ -25,7 +24,6 @@
             background-image: radial-gradient(circle at 50% 50%, #1a1a3d 0%, #050510 70%);
         }
         
-        /* HEADER */
         header { 
             background: rgba(5, 5, 16, 0.9); 
             border-bottom: 2px solid var(--neon-blue);
@@ -57,7 +55,6 @@
             background: rgba(0, 243, 255, 0.1);
         }
         
-        /* HERO */
         .hero {
             padding: 6rem 0; text-align: center;
             border-bottom: 1px solid var(--neon-pink);
@@ -82,7 +79,6 @@
             box-shadow: 0 0 30px var(--neon-pink);
         }
 
-        /* SECTIONS */
         .section { padding: 4rem 0; }
         .section-title { text-align: center; margin-bottom: 3rem; }
         .section-title h2 { 
@@ -90,7 +86,6 @@
             border-left: 5px solid var(--neon-blue); padding-left: 15px;
         }
         
-        /* VIDEO CARDS */
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; }
         .video-card { 
             background: var(--panel-bg); border: var(--border);
@@ -103,7 +98,7 @@
         }
         .video-container { 
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             border-bottom: 1px solid var(--neon-blue);
             box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.2);
@@ -114,7 +109,6 @@
         }
         .video-desc { padding: 1.5rem; color: #ccc; }
 
-        /* SIMULATOR */
         .simulator-section { border: 1px solid var(--neon-blue); background: rgba(0,0,0,0.5); margin: 20px; }
         .sim-container { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start; }
         
@@ -132,7 +126,6 @@
             border: 1px solid var(--neon-blue); margin-top: 20px;
         }
         
-        /* MISSION BOX */
         .mission-box {
             margin-top: 20px; padding: 15px;
             border: 1px solid var(--neon-green);
@@ -147,7 +140,6 @@
         }
         .mission-btn:hover { background: white; box-shadow: 0 0 15px white; }
 
-        /* TEAM */
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
         .member-card { 
             background: var(--panel-bg); padding: 2rem; text-align: center; 
@@ -160,12 +152,14 @@
         }
         .role-text { color: var(--neon-blue); font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
 
-        /* REFLECTION */
         .reflection-box { 
             background: var(--panel-bg); padding: 3rem; border-left: 4px solid var(--neon-pink);
         }
+        .reflection-box h3 { color: var(--neon-blue); font-family: 'Orbitron'; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .reflection-box h4 { color: var(--neon-pink); font-family: 'Orbitron'; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .reflection-box ul { margin-left: 20px; margin-bottom: 1rem; color: #ccc; }
+        .reflection-box p { margin-bottom: 1rem; text-align: justify; }
 
-        /* FOOTER */
         footer { background: black; color: white; text-align: center; padding: 3rem 0; margin-top: 4rem; border-top: 1px solid #333; }
 
         @media (max-width: 768px) {
@@ -311,15 +305,46 @@
         <div class="container">
             <div class="section-title"><h2>MISSION LOG</h2></div>
             <div class="reflection-box">
-                <h3 style="margin-bottom: 1rem; color: var(--neon-blue); font-family: 'Orbitron';">ADAPTATION PROTOCOLS</h3>
-                <p>[ <strong>WAITING FOR INPUT...</strong> ]</p>
-                <p style="color: #888;">(Farhah, paste Aleeya's report here)</p>
-                <br>
-                <h4 style="color: white;">REFERENCES</h4>
-                <ul style="margin-left: 20px; color: #aaa;">
-                    <li>Ouyang, F., & Xu, W. (2024). Educational Robotics Analysis.</li>
-                    <li>CSC4702 Database, Sem 1 2025/2026.</li>
+                <h3 style="margin-top: 0;">1. Executive Summary</h3>
+                <p>This report details the development of "THINK → REACH," a structured educational ecosystem designed to demystify robotic kinematics and perception. Since the field of robotics has presented a significant learning curve, the project team developed a two-tiered model of instruction for this project that allows learners to progress from intuitive biological analogies aimed at secondary school students to abstract mathematics modeling and sensor fusion concepts used by advanced learners. The ecosystem is anchored by a centralized, gamified digital platform hosted on GitHub Pages, ensuring a seamless and interactive user experience.</p>
+
+                <h3>2. Alignment with Proposal Objectives</h3>
+                <p>The final deliverables were systematically mapped against the objectives established in the initial project proposal:</p>
+                <ul>
+                    <li><strong>Accessibility for Non-Technical Audiences:</strong> Fulfilled by the "Rookie Level" module, which replaced abstract formulas with bio-mimicry (e.g., bat echolocation) to cater to secondary school demographics.</li>
+                    <li><strong>Demonstration of Mathematical Rigor:</strong> Achieved in the "Elite Level" module through formal matrix derivations (Forward Kinematics) and signal processing theories (Sensor Noise/Fusion).</li>
+                    <li><strong>Theory-to-Practice Validation:</strong> Realized via the Interactive Virtual Lab, which allows users to test the kinematic theories in real-time using a web-based robot arm simulator.</li>
                 </ul>
+
+                <h3>3. Content Development & Methodology</h3>
+                <h4>3.1 Beginner-Level Instructional Design</h4>
+                <p>The foundational phase focused on Conceptual Intuition. The objective was to build "mental scaffolding" before introducing mathematical complexity. We employed Bio-mimicry Analogies to explain robotic hardware:</p>
+                <ul>
+                    <li><strong>Sensory Logic:</strong> We compared Ultrasonic sensors to the natural echolocation of bats. This narrative approach allows students to understand "Sensing" as a biological superpower converted into technology.</li>
+                    <li><strong>Structural Mapping:</strong> By utilizing the "Human Arm" analogy, we defined Links as bones and Joints as shoulders or elbows. This grounds the mechanical structure in the viewer’s own physical reality.</li>
+                    <li><strong>Kinematic Logic:</strong> We introduced Forward Kinematics as a "Mathematical Map." By focusing on the relationship between input (joint angles) and output (hand position), we established the logic of robotic control without overwhelming the audience with trigonometry.</li>
+                </ul>
+
+                <h4>3.2 Advanced Mathematical Modeling</h4>
+                <p>The advanced module transitioned into Computational Rigor, targeted at university-level engineering students. This section converted the "Map" from the beginner module into a precise engineering tool:</p>
+                <ul>
+                    <li><strong>Kinematic Modeling:</strong> We derived Homogeneous Transformation Matrices (T02 = T01 · T12) and DH Parameters to calculate the precise (x, y) coordinates of the end-effector.</li>
+                    <li><strong>Sensor Fusion:</strong> Beyond simple sensing, we addressed the reality of Sensor Noise. We explained how combining data sources (Fusion) is critical for creating reliable robotic perception in the real world.</li>
+                </ul>
+
+                <h3>4. Platform Architecture & Digital Strategy</h3>
+                <p>We developed the "Future Lab", a centralized GitHub Pages-based platform. The overall strategy was centered around gamifying the learning experience and immersing users in the platform:</p>
+                <ul>
+                    <li><strong>The "Future Tech" Aesthetic:</strong> To capture the interest of the younger audiences, we moved away from standard academic layouts to a "Sci-Fi / Gamer" interface. Using a dark-mode neon palette and holographic UI elements, we framed the learning process as "Initializing a Mission," making the math feel like a game mechanic rather than a chore.</li>
+                    <li><strong>Interactive Simulation & Gamification:</strong> We developed a JavaScript-based Robot Arm Simulator using the HTML5 Canvas API. To fulfill the "Enrichment Idea" from the project brief, we implemented a "Mission Mode". This feature challenges users to manipulate joint angles to hit a randomly generated target, actively testing their understanding of Forward Kinematics.</li>
+                    <li><strong>Language Accessibility:</strong> We provided a suitable solution for students who have less fluency in English by incorporating a Technical Glossary ("Data Bank") into the footer.</li>
+                </ul>
+
+                <h3>5. Team Collaboration & Quality Assurance</h3>
+                <p>The project's success relied on a "Unified Technical Lexicon." During the development phase, the team held regular synchronization meetings to ensure that the variables used in the beginner video (e.g., L1, L2, θ) perfectly matched the symbols used in the advanced mathematical proofs. This consistency eliminated cognitive dissonance for the learner.</p>
+
+                <h3>6. Conclusion</h3>
+                <p>"THINK → REACH" demonstrates that effective engineering education requires a balance between simplicity and depth. Our project has developed an inclusive, academically rigorous curriculum through the combination of conceptual logic and mathematical derivation, with additional advantages offered by the use of gamification (as a digital learning platform). It has turned a previously passive experience of video watching into a fun, exploratory, and interactive form of learning.</p>
             </div>
         </div>
     </section>
@@ -330,9 +355,13 @@
             <div style="background: var(--panel-bg); padding: 20px; border: 1px solid var(--neon-blue);">
                 <h3 style="color: var(--neon-pink); margin-bottom: 10px;">TECHNICAL GLOSSARY</h3>
                 <ul style="list-style: none;">
-                    <li style="margin-bottom: 10px;"><strong>Kinematics:</strong> The math of motion (Geometri pergerakan).</li>
-                    <li style="margin-bottom: 10px;"><strong>End Effector:</strong> The robot's hand/tool (Tangan robot).</li>
-                    <li style="margin-bottom: 10px;"><strong>Sensor Fusion:</strong> Combining data from multiple sensors (Gabungan data sensor).</li>
+                    <li style="margin-bottom: 10px;"><strong>Kinematics:</strong> The mathematics of motion without considering forces. It's how we calculate where the robot is. (Geometri pergerakan).</li>
+                    <li style="margin-bottom: 10px;"><strong>End Effector:</strong> The device at the end of a robotic arm, designed to interact with the environment (e.g., a gripper or tool). (Tangan robot).</li>
+                    <li style="margin-bottom: 10px;"><strong>Forward Kinematics:</strong> The process of calculating the position of the end-effector given the joint angles. (Kinematik Maju).</li>
+                    <li style="margin-bottom: 10px;"><strong>Sensor Fusion:</strong> The process of combining data from multiple sensors to reduce uncertainty and noise. (Gabungan data sensor).</li>
+                    <li style="margin-bottom: 10px;"><strong>Ultrasonic Sensor:</strong> A sensor that measures distance by emitting sound waves and timing their return, similar to a bat. (Sensor ultrasonik).</li>
+                    <li style="margin-bottom: 10px;"><strong>DH Parameters (Denavit-Hartenberg):</strong> A standard way to describe the geometry of a robot arm using four parameters: link length, link twist, link offset, and joint angle.</li>
+                    <li style="margin-bottom: 10px;"><strong>Transformation Matrix:</strong> A mathematical grid of numbers used to calculate the rotation and translation of a robot link in space.</li>
                 </ul>
             </div>
         </div>
