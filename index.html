@@ -10,7 +10,7 @@
         :root {
             --neon-blue: #00f3ff;
             --neon-pink: #bc13fe;
-            --neon-green: #0f0; /* Added for Success State */
+            --neon-green: #0f0; 
             --dark-bg: #050510;
             --panel-bg: rgba(20, 20, 40, 0.7);
             --border: 1px solid rgba(0, 243, 255, 0.3);
@@ -25,7 +25,7 @@
             background-image: radial-gradient(circle at 50% 50%, #1a1a3d 0%, #050510 70%);
         }
         
-        /* HEADER - Holographic */
+        /* HEADER */
         header { 
             background: rgba(5, 5, 16, 0.9); 
             border-bottom: 2px solid var(--neon-blue);
@@ -57,7 +57,7 @@
             background: rgba(0, 243, 255, 0.1);
         }
         
-        /* HERO - HUD Style */
+        /* HERO */
         .hero {
             padding: 6rem 0; text-align: center;
             border-bottom: 1px solid var(--neon-pink);
@@ -90,7 +90,7 @@
             border-left: 5px solid var(--neon-blue); padding-left: 15px;
         }
         
-        /* CARDS - Glassmorphism */
+        /* VIDEO CARDS */
         .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; }
         .video-card { 
             background: var(--panel-bg); border: var(--border);
@@ -101,14 +101,20 @@
             border-bottom: 1px solid var(--neon-blue); color: var(--neon-blue); 
             font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
         }
-        .video-placeholder { 
-            height: 250px; background: #000; display: flex; align-items: center; justify-content: center; 
-            color: var(--neon-blue); border-bottom: 1px solid var(--neon-blue);
+        .video-container { 
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            border-bottom: 1px solid var(--neon-blue);
             box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.2);
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
         .video-desc { padding: 1.5rem; color: #ccc; }
 
-        /* SIMULATOR - Hologram Style */
+        /* SIMULATOR */
         .simulator-section { border: 1px solid var(--neon-blue); background: rgba(0,0,0,0.5); margin: 20px; }
         .sim-container { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start; }
         
@@ -126,15 +132,13 @@
             border: 1px solid var(--neon-blue); margin-top: 20px;
         }
         
-        /* NEW: MISSION STATUS BOX */
+        /* MISSION BOX */
         .mission-box {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 20px; padding: 15px;
             border: 1px solid var(--neon-green);
             background: rgba(0, 255, 0, 0.05);
             color: var(--neon-green);
-            font-family: 'Orbitron';
-            text-align: center;
+            font-family: 'Orbitron'; text-align: center;
         }
         .mission-btn {
             background: var(--neon-blue); color: #000; width: 100%; padding: 10px;
@@ -207,8 +211,8 @@
                         <h3>LEVEL 1: ROOKIE</h3>
                         <small>Junior Audience</small>
                     </div>
-                    <div class="video-placeholder">
-                        <p>[ ALEEYA'S VIDEO FEED ]</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/r6J0tbUvdd0" title="Aleeya Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-desc">
                         <p><strong>Topic:</strong> Basic Analogies. Human Arm vs Robot Arm.</p>
@@ -220,8 +224,8 @@
                         <h3>LEVEL 2: ELITE</h3>
                         <small>Advanced Technical</small>
                     </div>
-                    <div class="video-placeholder">
-                        <p>[ TECH DUO VIDEO FEED ]</p>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/BKTBzk4ojiI" title="Tech Duo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="video-desc">
                         <p><strong>Topic:</strong> Matrix Calculations & Noise Signals.</p>
@@ -355,14 +359,11 @@
         const dispDist = document.getElementById('dist');
         const missionStatus = document.getElementById('missionStatus');
 
-        // Mission Variables
         let target = { x: 0, y: 0, active: false };
 
         function startMission() {
-            // Generate random target within reach
-            // Random angle between -45 and 45 for variety
             let angle = (Math.random() * 180 - 90) * (Math.PI/180);
-            let dist = 100 + Math.random() * 50; // Random distance
+            let dist = 100 + Math.random() * 50;
             
             target.x = baseX + dist * Math.sin(angle);
             target.y = baseY - dist * Math.cos(angle);
@@ -391,19 +392,15 @@
             let x2 = x1 + L2 * Math.cos(Math.PI/2 + rad1 + rad2);
             let y2 = y1 - L2 * Math.sin(Math.PI/2 + rad1 + rad2);
 
-            // Floor
             ctx.beginPath(); ctx.moveTo(0, 350); ctx.lineTo(500, 350);
             ctx.lineWidth = 2; ctx.strokeStyle = "#333"; ctx.stroke();
 
-            // Draw Target if Active
             if(target.active) {
-                // Check distance
                 let dx = x2 - target.x;
                 let dy = y2 - target.y;
                 let distance = Math.sqrt(dx*dx + dy*dy);
                 
                 if(distance < 15) {
-                    // Success!
                     ctx.fillStyle = "#0f0";
                     ctx.shadowBlur = 20; ctx.shadowColor = "#0f0";
                     missionStatus.innerHTML = "TARGET ACQUIRED! EXCELLENT WORK.";
@@ -413,37 +410,28 @@
                     ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
                     ctx.shadowBlur = 10; ctx.shadowColor = "red";
                 }
-                
                 ctx.beginPath(); ctx.arc(target.x, target.y, 10, 0, Math.PI*2); ctx.fill();
-                ctx.shadowBlur = 0; // Reset
+                ctx.shadowBlur = 0;
             }
 
-            // Base
             ctx.fillStyle = "#111"; ctx.fillRect(baseX-20, baseY, 40, 50);
             ctx.strokeStyle = "#00f3ff"; ctx.strokeRect(baseX-20, baseY, 40, 50);
-
-            // Glow
             ctx.shadowBlur = 15;
 
-            // Link 1
             ctx.beginPath(); ctx.moveTo(baseX, baseY); ctx.lineTo(x1, y1);
             ctx.lineWidth = 8; ctx.strokeStyle = "#00f3ff"; ctx.shadowColor = "#00f3ff"; ctx.stroke(); 
 
-            // Link 2
             ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2);
             ctx.lineWidth = 6; ctx.strokeStyle = "#bc13fe"; ctx.shadowColor = "#bc13fe"; ctx.stroke();
 
-            // Joints
             ctx.shadowBlur = 0; 
             ctx.fillStyle = "#fff"; 
             ctx.beginPath(); ctx.arc(baseX, baseY, 5, 0, Math.PI*2); ctx.fill();
             ctx.beginPath(); ctx.arc(x1, y1, 5, 0, Math.PI*2); ctx.fill();
             
-            // End Effector
             ctx.fillStyle = "#bc13fe"; 
             ctx.beginPath(); ctx.arc(x2, y2, 8, 0, Math.PI*2); ctx.fill();
 
-            // Telemetry
             dispX.innerText = Math.round(x2 - baseX);
             dispY.innerText = Math.round(baseY - y2);
             let dist = Math.max(0, 350 - y2);
