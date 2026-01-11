@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Think → Reach | Future Lab</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
@@ -23,11 +23,12 @@
             color: var(--text-main); 
             line-height: 1.6; 
             background-image: radial-gradient(circle at 50% 50%, #1a1a3d 0%, #050510 70%);
+            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
         }
         
         /* HEADER */
         header { 
-            background: rgba(5, 5, 16, 0.9); 
+            background: rgba(5, 5, 16, 0.95); 
             border-bottom: 2px solid var(--neon-blue);
             box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
             padding: 1rem 0; 
@@ -35,23 +36,24 @@
             backdrop-filter: blur(10px);
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         
         .logo h1 { 
-            font-family: 'Orbitron', sans-serif; font-size: 1.8rem; letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif; font-size: 1.5rem; letter-spacing: 2px;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             text-transform: uppercase;
+            white-space: nowrap;
         }
         
-        nav ul { display: flex; list-style: none; }
+        nav ul { display: flex; list-style: none; padding: 0; }
         nav ul li { margin-left: 20px; }
         nav ul li a { 
-            color: var(--neon-blue); text-decoration: none; font-weight: 700; font-size: 1.2rem; 
+            color: var(--neon-blue); text-decoration: none; font-weight: 700; font-size: 1rem; 
             text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
-            border: 1px solid transparent; padding: 5px 15px;
+            border: 1px solid transparent; padding: 5px 10px; display: inline-block;
         }
-        nav ul li a:hover { 
+        nav ul li a:hover, nav ul li a:active { 
             border: 1px solid var(--neon-blue); 
             box-shadow: 0 0 10px var(--neon-blue);
             background: rgba(0, 243, 255, 0.1);
@@ -59,7 +61,7 @@
         
         /* HERO */
         .hero {
-            padding: 6rem 0; text-align: center;
+            padding: 4rem 0; text-align: center;
             border-bottom: 1px solid var(--neon-pink);
             background:
                 linear-gradient(90deg, var(--dark-bg) 21px, transparent 1%) center,
@@ -67,69 +69,97 @@
                 rgba(0, 243, 255, 0.05);
             background-size: 22px 22px;
         }
-        .hero h2 { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; margin-bottom: 0.5rem; text-shadow: 0 0 20px var(--neon-blue); }
-        .hero p { font-size: 1.5rem; max-width: 700px; margin: 0 auto 2rem; color: #aab; }
+        .hero h2 { 
+            font-family: 'Orbitron', sans-serif; font-size: 2.5rem; 
+            margin-bottom: 0.5rem; text-shadow: 0 0 20px var(--neon-blue); 
+            line-height: 1.2;
+        }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; color: #aab; padding: 0 10px; }
         
         .btn { 
-            background: transparent; color: var(--neon-pink); padding: 15px 40px; 
+            background: rgba(188, 19, 254, 0.1); color: var(--neon-pink); padding: 15px 40px; 
             border: 2px solid var(--neon-pink);
-            text-decoration: none; font-weight: 900; font-size: 1.2rem; font-family: 'Orbitron', sans-serif;
+            text-decoration: none; font-weight: 900; font-size: 1.1rem; font-family: 'Orbitron', sans-serif;
             transition: 0.3s; display: inline-block; 
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer;
+            border-radius: 4px;
         }
-        .btn:hover { 
+        .btn:hover, .btn:active { 
             background-color: var(--neon-pink); color: white;
             box-shadow: 0 0 30px var(--neon-pink);
         }
 
         /* SECTIONS */
-        .section { padding: 4rem 0; }
-        .section-title { text-align: center; margin-bottom: 3rem; }
+        .section { padding: 3rem 0; }
+        .section-title { text-align: center; margin-bottom: 2rem; }
         .section-title h2 { 
-            font-family: 'Orbitron', sans-serif; font-size: 2rem; color: white; 
-            border-left: 5px solid var(--neon-blue); padding-left: 15px;
+            font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: white; 
+            border-left: 5px solid var(--neon-blue); padding-left: 15px; display: inline-block;
         }
         
         /* VIDEO CARDS */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
         .video-card { 
             background: var(--panel-bg); border: var(--border);
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px); border-radius: 8px; overflow: hidden;
         }
         .video-header { 
             padding: 1rem; background: rgba(0, 243, 255, 0.1); 
             border-bottom: 1px solid var(--neon-blue); color: var(--neon-blue); 
-            font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif; letter-spacing: 1px; font-size: 0.9rem;
         }
         .video-container { 
             position: relative;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
-            border-bottom: 1px solid var(--neon-blue);
-            box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.2);
             background: #000;
         }
         .video-container iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
-        .video-desc { padding: 1.5rem; color: #ccc; }
+        .video-desc { padding: 1.5rem; color: #ccc; font-size: 0.95rem; }
 
-        /* SIMULATOR */
-        .simulator-section { border: 1px solid var(--neon-blue); background: rgba(0,0,0,0.5); margin: 20px; }
-        .sim-container { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start; }
+        /* SIMULATOR - MOBILE OPTIMIZED */
+        .simulator-section { border: 1px solid var(--neon-blue); background: rgba(0,0,0,0.5); margin: 20px 0; border-radius: 10px; padding: 10px; }
+        .sim-container { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
         
+        /* THE MAGIC TRICK: Responsive Canvas */
         canvas { 
             background: #000; border: 2px solid var(--neon-pink); 
             box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+            border-radius: 8px;
+            width: 100%; /* Make it flexible */
+            height: auto; /* Maintain aspect ratio */
+            max-width: 500px; /* Don't get too big on desktop */
         }
+
         .sim-controls { 
-            flex: 1; min-width: 300px; background: var(--panel-bg); padding: 2rem; 
-            border: 1px solid var(--neon-blue);
+            width: 100%; max-width: 500px; 
+            background: var(--panel-bg); padding: 1.5rem; 
+            border: 1px solid var(--neon-blue); border-radius: 8px;
         }
-        input[type="range"] { width: 100%; margin: 10px 0 20px; cursor: pointer; accent-color: var(--neon-blue); }
+        
+        /* MOBILE FRIENDLY SLIDERS */
+        input[type="range"] {
+            -webkit-appearance: none; width: 100%; height: 10px;
+            background: rgba(255, 255, 255, 0.1); border-radius: 5px;
+            outline: none; margin: 15px 0 25px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 25px; height: 25px; /* BIGGER THUMB FOR FINGERS */
+            background: var(--neon-blue); cursor: pointer; border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 25px; height: 25px;
+            background: var(--neon-blue); cursor: pointer; border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-blue); border: none;
+        }
+
         .data-box { 
             background: #000; color: var(--neon-blue); padding: 15px; font-family: monospace; 
-            border: 1px solid var(--neon-blue); margin-top: 20px;
+            border: 1px solid var(--neon-blue); margin-top: 20px; font-size: 0.9rem;
         }
         
         /* MISSION BOX */
@@ -139,47 +169,57 @@
             background: rgba(0, 255, 0, 0.05);
             color: var(--neon-green);
             font-family: 'Orbitron'; text-align: center;
+            font-size: 0.9rem;
         }
         .mission-btn {
-            background: var(--neon-blue); color: #000; width: 100%; padding: 10px;
+            background: var(--neon-blue); color: #000; width: 100%; padding: 15px;
             font-weight: bold; border: none; font-family: 'Orbitron'; cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s; font-size: 1rem; border-radius: 4px; margin-bottom: 10px;
         }
-        .mission-btn:hover { background: white; box-shadow: 0 0 15px white; }
+        .mission-btn:active { background: white; transform: scale(0.98); }
 
         /* TEAM */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
         .member-card { 
-            background: var(--panel-bg); padding: 2rem; text-align: center; 
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; 
+            background: var(--panel-bg); padding: 1.5rem; text-align: center; 
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; border-radius: 8px;
         }
-        .member-card:hover { transform: translateY(-5px); border-color: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); }
         .member-avatar { 
-            width: 120px; height: 120px; 
-            background: #111;
+            width: 100px; height: 100px; 
+            background: #fff;
             border-radius: 50%; margin: 0 auto 1rem; 
             border: 3px solid var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue);
             overflow: hidden;
         }
         .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
-        .role-text { color: var(--neon-blue); font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
+        .role-text { color: var(--neon-blue); font-weight: bold; letter-spacing: 1px; text-transform: uppercase; font-size: 0.9rem; }
 
         /* REFLECTION */
         .reflection-box { 
-            background: var(--panel-bg); padding: 3rem; border-left: 4px solid var(--neon-pink);
+            background: var(--panel-bg); padding: 1.5rem; border-left: 4px solid var(--neon-pink); border-radius: 8px;
         }
-        .reflection-box h3 { color: var(--neon-blue); font-family: 'Orbitron'; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-        .reflection-box h4 { color: var(--neon-pink); font-family: 'Orbitron'; margin-top: 1rem; margin-bottom: 0.5rem; }
-        .reflection-box ul { margin-left: 20px; margin-bottom: 1rem; color: #ccc; }
-        .reflection-box p { margin-bottom: 1rem; text-align: justify; }
+        .reflection-box h3 { color: var(--neon-blue); font-family: 'Orbitron'; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .reflection-box h4 { color: var(--neon-pink); font-family: 'Orbitron'; margin-top: 1rem; margin-bottom: 0.5rem; font-size: 1rem; }
+        .reflection-box ul { margin-left: 15px; margin-bottom: 1rem; color: #ccc; }
+        .reflection-box p { margin-bottom: 1rem; text-align: justify; font-size: 0.95rem; }
+
+        /* GLOSSARY */
+        .glossary-box {
+            background: var(--panel-bg); padding: 1.5rem; border: 1px solid var(--neon-blue); border-radius: 8px;
+        }
+        .glossary-box ul li { margin-bottom: 12px; font-size: 0.95rem; }
 
         /* FOOTER */
-        footer { background: black; color: white; text-align: center; padding: 3rem 0; margin-top: 4rem; border-top: 1px solid #333; }
+        footer { background: black; color: white; text-align: center; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid #333; font-size: 0.9rem; }
 
+        /* --- MOBILE SPECIFIC TWEAKS --- */
         @media (max-width: 768px) {
-            .header-content { flex-direction: column; }
-            nav ul { margin-top: 1rem; flex-wrap: wrap; justify-content: center; }
-            .hero h2 { font-size: 2.5rem; }
+            .header-content { flex-direction: column; gap: 10px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            nav ul li { margin: 0; }
+            .hero h2 { font-size: 1.8rem; }
+            .section { padding: 2rem 0; }
+            .sim-controls { padding: 1rem; }
         }
     </style>
 </head>
@@ -194,8 +234,8 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#videos">Videos</a></li>
-                    <li><a href="#simulator">Lab_01</a></li>
-                    <li><a href="#team">Unit</a></li>
+                    <li><a href="#simulator">Lab</a></li>
+                    <li><a href="#team">Team</a></li>
                     <li><a href="#reflection">Log</a></li>
                 </ul>
             </nav>
@@ -216,29 +256,27 @@
             <div class="video-grid">
                 <div class="video-card">
                     <div class="video-header">
-                        <h3>LEVEL 1: ROOKIE</h3>
-                        <small>Junior Audience</small>
+                        <h3>LEVEL 1: ROOKIE (JUNIOR)</h3>
                     </div>
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/r6J0tbUvdd0" title="Aleeya Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/r6J0tbUvdd0" title="Aleeya Video" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="video-desc">
                         <p><strong>Topic:</strong> Nature & Anatomy.</p>
-                        <p style="margin-top:10px;">How does an <strong>Ultrasonic Sensor</strong> mimic a Bat's echolocation? We explore how robots "see" with sound and why a robot arm works exactly like your own human arm (Joints & Links).</p>
+                        <p style="margin-top:10px;">How does an <strong>Ultrasonic Sensor</strong> mimic a Bat's echolocation? We explore how robots "see" with sound and why a robot arm works like a human arm.</p>
                     </div>
                 </div>
                 
                 <div class="video-card">
                     <div class="video-header">
-                        <h3>LEVEL 2: ELITE</h3>
-                        <small>Advanced Technical</small>
+                        <h3>LEVEL 2: ELITE (UNI)</h3>
                     </div>
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/BKTBzk4ojiI" title="Tech Duo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/BKTBzk4ojiI" title="Tech Duo Video" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <div class="video-desc">
                         <p><strong>Topic:</strong> Kinematics & Fusion.</p>
-                        <p style="margin-top:10px;">Master <strong>Homogeneous Transformation Matrices</strong> and <strong>DH Parameters</strong>. Learn how to combat <strong>Sensor Noise</strong> using advanced Sensor Fusion techniques for industrial precision.</p>
+                        <p style="margin-top:10px;">Master <strong>Homogeneous Transformation Matrices</strong> and <strong>DH Parameters</strong>. Learn about <strong>Sensor Noise</strong> and Fusion techniques.</p>
                     </div>
                 </div>
             </div>
@@ -248,7 +286,7 @@
     <section id="simulator" class="section simulator-section">
         <div class="container">
             <div class="section-title"><h2>VIRTUAL LAB</h2></div>
-            <p style="text-align: center; margin-bottom: 30px; font-family: 'Orbitron'; color: var(--neon-blue);">
+            <p style="text-align: center; margin-bottom: 20px; font-family: 'Orbitron'; color: var(--neon-blue); font-size: 0.9rem;">
                 STATUS: ONLINE | MODE: INTERACTIVE
             </p>
             
@@ -256,7 +294,7 @@
                 <canvas id="robotCanvas" width="500" height="400"></canvas>
                 
                 <div class="sim-controls">
-                    <h3 style="color: var(--neon-pink); font-family: 'Orbitron';">CONTROL INTERFACE</h3>
+                    <h3 style="color: var(--neon-pink); font-family: 'Orbitron'; text-align: center;">CONTROL INTERFACE</h3>
                     <hr style="margin: 15px 0; border: 0; border-top: 1px solid #333;">
                     
                     <button class="mission-btn" onclick="startMission()">🎯 INITIATE TARGET MISSION</button>
@@ -266,10 +304,10 @@
                     </div>
                     
                     <br>
-                    <label><strong>JOINT 1 (THETA 1):</strong> <span id="val1">0</span>°</label>
+                    <label><strong>JOINT 1 (SHOULDER):</strong> <span id="val1">0</span>°</label>
                     <input type="range" id="theta1" min="-90" max="90" value="0">
                     
-                    <label><strong>JOINT 2 (THETA 2):</strong> <span id="val2">45</span>°</label>
+                    <label><strong>JOINT 2 (ELBOW):</strong> <span id="val2">45</span>°</label>
                     <input type="range" id="theta2" min="-120" max="120" value="45">
 
                     <div class="data-box">
@@ -279,7 +317,7 @@
                         <p>DIST: <span id="dist">0</span> CM</p>
                     </div>
                     
-                    <p style="font-size: 0.8rem; margin-top: 15px; color: #666;">
+                    <p style="font-size: 0.8rem; margin-top: 15px; color: #666; text-align: center;">
                         CALC: x = L1*cos(θ1) + L2*cos(θ1+θ2)
                     </p>
                 </div>
@@ -374,16 +412,16 @@
     <section class="section">
         <div class="container">
             <div class="section-title"><h2>DATA BANK</h2></div>
-            <div style="background: var(--panel-bg); padding: 20px; border: 1px solid var(--neon-blue);">
-                <h3 style="color: var(--neon-pink); margin-bottom: 10px;">TECHNICAL GLOSSARY</h3>
-                <ul style="list-style: none;">
-                    <li style="margin-bottom: 10px;"><strong>Kinematics:</strong> The mathematics of motion without considering forces. It's how we calculate where the robot is. (Geometri pergerakan).</li>
-                    <li style="margin-bottom: 10px;"><strong>End Effector:</strong> The device at the end of a robotic arm, designed to interact with the environment (e.g., a gripper or tool). (Tangan robot).</li>
-                    <li style="margin-bottom: 10px;"><strong>Forward Kinematics:</strong> The process of calculating the position of the end-effector given the joint angles. (Kinematik Maju).</li>
-                    <li style="margin-bottom: 10px;"><strong>Sensor Fusion:</strong> The process of combining data from multiple sensors to reduce uncertainty and noise. (Gabungan data sensor).</li>
-                    <li style="margin-bottom: 10px;"><strong>Ultrasonic Sensor:</strong> A sensor that measures distance by emitting sound waves and timing their return, similar to a bat. (Sensor ultrasonik).</li>
-                    <li style="margin-bottom: 10px;"><strong>DH Parameters (Denavit-Hartenberg):</strong> A standard way to describe the geometry of a robot arm using four parameters: link length, link twist, link offset, and joint angle.</li>
-                    <li style="margin-bottom: 10px;"><strong>Transformation Matrix:</strong> A mathematical grid of numbers used to calculate the rotation and translation of a robot link in space.</li>
+            <div class="glossary-box">
+                <h3 style="color: var(--neon-pink); margin-bottom: 15px;">TECHNICAL GLOSSARY</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li><strong>Kinematics:</strong> The math of motion. How we calculate where the robot is. (Geometri pergerakan).</li>
+                    <li><strong>End Effector:</strong> The device at the end of a robotic arm, like a gripper or tool. (Tangan robot).</li>
+                    <li><strong>Forward Kinematics:</strong> Calculating the position of the hand given the joint angles. (Kinematik Maju).</li>
+                    <li><strong>Sensor Fusion:</strong> Combining data from multiple sensors to reduce uncertainty and noise. (Gabungan data sensor).</li>
+                    <li><strong>Ultrasonic Sensor:</strong> Measures distance by emitting sound waves, similar to a bat. (Sensor ultrasonik).</li>
+                    <li><strong>DH Parameters:</strong> A standard way to describe robot arm geometry using 4 variables.</li>
+                    <li><strong>Transformation Matrix:</strong> A math grid used to calculate rotation and translation in space.</li>
                 </ul>
             </div>
         </div>
