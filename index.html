@@ -23,7 +23,7 @@
             color: var(--text-main); 
             line-height: 1.6; 
             background-image: radial-gradient(circle at 50% 50%, #1a1a3d 0%, #050510 70%);
-            overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+            overflow-x: hidden;
         }
         
         /* HEADER */
@@ -39,7 +39,7 @@
         .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
         
         .logo h1 { 
-            font-family: 'Orbitron', sans-serif; font-size: 1.5rem; letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif; font-size: 1.8rem; letter-spacing: 2px;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             text-transform: uppercase;
@@ -61,7 +61,7 @@
         
         /* HERO */
         .hero {
-            padding: 4rem 0; text-align: center;
+            padding: 6rem 0; text-align: center;
             border-bottom: 1px solid var(--neon-pink);
             background:
                 linear-gradient(90deg, var(--dark-bg) 21px, transparent 1%) center,
@@ -70,16 +70,16 @@
             background-size: 22px 22px;
         }
         .hero h2 { 
-            font-family: 'Orbitron', sans-serif; font-size: 2.5rem; 
+            font-family: 'Orbitron', sans-serif; font-size: 3.5rem; 
             margin-bottom: 0.5rem; text-shadow: 0 0 20px var(--neon-blue); 
             line-height: 1.2;
         }
-        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 2rem; color: #aab; padding: 0 10px; }
+        .hero p { font-size: 1.5rem; max-width: 700px; margin: 0 auto 2rem; color: #aab; padding: 0 10px; }
         
         .btn { 
             background: rgba(188, 19, 254, 0.1); color: var(--neon-pink); padding: 15px 40px; 
             border: 2px solid var(--neon-pink);
-            text-decoration: none; font-weight: 900; font-size: 1.1rem; font-family: 'Orbitron', sans-serif;
+            text-decoration: none; font-weight: 900; font-size: 1.2rem; font-family: 'Orbitron', sans-serif;
             transition: 0.3s; display: inline-block; 
             text-transform: uppercase; letter-spacing: 2px; cursor: pointer;
             border-radius: 4px;
@@ -90,15 +90,15 @@
         }
 
         /* SECTIONS */
-        .section { padding: 3rem 0; }
-        .section-title { text-align: center; margin-bottom: 2rem; }
+        .section { padding: 4rem 0; }
+        .section-title { text-align: center; margin-bottom: 3rem; }
         .section-title h2 { 
-            font-family: 'Orbitron', sans-serif; font-size: 1.8rem; color: white; 
+            font-family: 'Orbitron', sans-serif; font-size: 2rem; color: white; 
             border-left: 5px solid var(--neon-blue); padding-left: 15px; display: inline-block;
         }
         
         /* VIDEO CARDS */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 2rem; }
         .video-card { 
             background: var(--panel-bg); border: var(--border);
             backdrop-filter: blur(5px); border-radius: 8px; overflow: hidden;
@@ -106,7 +106,7 @@
         .video-header { 
             padding: 1rem; background: rgba(0, 243, 255, 0.1); 
             border-bottom: 1px solid var(--neon-blue); color: var(--neon-blue); 
-            font-family: 'Orbitron', sans-serif; letter-spacing: 1px; font-size: 0.9rem;
+            font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
         }
         .video-container { 
             position: relative;
@@ -117,42 +117,50 @@
         .video-container iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
-        .video-desc { padding: 1.5rem; color: #ccc; font-size: 0.95rem; }
+        .video-desc { padding: 1.5rem; color: #ccc; }
 
-        /* SIMULATOR - MOBILE OPTIMIZED */
-        .simulator-section { border: 1px solid var(--neon-blue); background: rgba(0,0,0,0.5); margin: 20px 0; border-radius: 10px; padding: 10px; }
-        .sim-container { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+        /* SIMULATOR - RESPONSIVE FIX */
+        .simulator-section { border: 1px solid var(--neon-blue); background: rgba(0,0,0,0.5); margin: 20px 0; border-radius: 10px; padding: 20px; }
         
-        /* THE MAGIC TRICK: Responsive Canvas */
+        .sim-container { 
+            display: flex; 
+            flex-wrap: wrap; /* THIS FIXES DESKTOP: Allows items to sit side-by-side */
+            gap: 2rem; 
+            justify-content: center; 
+            align-items: flex-start; 
+        }
+        
         canvas { 
             background: #000; border: 2px solid var(--neon-pink); 
             box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
             border-radius: 8px;
-            width: 100%; /* Make it flexible */
-            height: auto; /* Maintain aspect ratio */
-            max-width: 500px; /* Don't get too big on desktop */
+            width: 100%; 
+            height: auto; 
+            max-width: 500px; /* Keep it from getting huge */
         }
 
         .sim-controls { 
-            width: 100%; max-width: 500px; 
+            flex: 1; /* Grow to fill space */
+            min-width: 300px; /* Don't get too small */
+            max-width: 500px; /* Don't get too wide */
             background: var(--panel-bg); padding: 1.5rem; 
             border: 1px solid var(--neon-blue); border-radius: 8px;
         }
         
-        /* MOBILE FRIENDLY SLIDERS */
+        /* SLIDERS */
         input[type="range"] {
-            -webkit-appearance: none; width: 100%; height: 10px;
+            -webkit-appearance: none; width: 100%; height: 8px;
             background: rgba(255, 255, 255, 0.1); border-radius: 5px;
             outline: none; margin: 15px 0 25px;
         }
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none; appearance: none;
-            width: 25px; height: 25px; /* BIGGER THUMB FOR FINGERS */
+            width: 20px; height: 20px; 
             background: var(--neon-blue); cursor: pointer; border-radius: 50%;
             box-shadow: 0 0 10px var(--neon-blue);
         }
         input[type="range"]::-moz-range-thumb {
-            width: 25px; height: 25px;
+            width: 20px; height: 20px;
             background: var(--neon-blue); cursor: pointer; border-radius: 50%;
             box-shadow: 0 0 10px var(--neon-blue); border: none;
         }
@@ -169,21 +177,21 @@
             background: rgba(0, 255, 0, 0.05);
             color: var(--neon-green);
             font-family: 'Orbitron'; text-align: center;
-            font-size: 0.9rem;
         }
         .mission-btn {
-            background: var(--neon-blue); color: #000; width: 100%; padding: 15px;
+            background: var(--neon-blue); color: #000; width: 100%; padding: 12px;
             font-weight: bold; border: none; font-family: 'Orbitron'; cursor: pointer;
             transition: 0.3s; font-size: 1rem; border-radius: 4px; margin-bottom: 10px;
         }
-        .mission-btn:active { background: white; transform: scale(0.98); }
+        .mission-btn:hover { background: white; box-shadow: 0 0 15px white; }
 
         /* TEAM */
         .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
         .member-card { 
-            background: var(--panel-bg); padding: 1.5rem; text-align: center; 
+            background: var(--panel-bg); padding: 2rem; text-align: center; 
             border: 1px solid rgba(255,255,255,0.1); transition: 0.3s; border-radius: 8px;
         }
+        .member-card:hover { transform: translateY(-5px); border-color: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue); }
         .member-avatar { 
             width: 100px; height: 100px; 
             background: #fff;
@@ -196,30 +204,45 @@
 
         /* REFLECTION */
         .reflection-box { 
-            background: var(--panel-bg); padding: 1.5rem; border-left: 4px solid var(--neon-pink); border-radius: 8px;
+            background: var(--panel-bg); padding: 2rem; border-left: 4px solid var(--neon-pink); border-radius: 8px;
         }
-        .reflection-box h3 { color: var(--neon-blue); font-family: 'Orbitron'; margin-top: 1.5rem; margin-bottom: 0.5rem; font-size: 1.1rem; }
-        .reflection-box h4 { color: var(--neon-pink); font-family: 'Orbitron'; margin-top: 1rem; margin-bottom: 0.5rem; font-size: 1rem; }
-        .reflection-box ul { margin-left: 15px; margin-bottom: 1rem; color: #ccc; }
-        .reflection-box p { margin-bottom: 1rem; text-align: justify; font-size: 0.95rem; }
+        .reflection-box h3 { color: var(--neon-blue); font-family: 'Orbitron'; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .reflection-box h4 { color: var(--neon-pink); font-family: 'Orbitron'; margin-top: 1rem; margin-bottom: 0.5rem; }
+        .reflection-box ul { margin-left: 20px; margin-bottom: 1rem; color: #ccc; }
+        .reflection-box p { margin-bottom: 1rem; text-align: justify; }
 
         /* GLOSSARY */
         .glossary-box {
-            background: var(--panel-bg); padding: 1.5rem; border: 1px solid var(--neon-blue); border-radius: 8px;
+            background: var(--panel-bg); padding: 2rem; border: 1px solid var(--neon-blue); border-radius: 8px;
         }
-        .glossary-box ul li { margin-bottom: 12px; font-size: 0.95rem; }
+        .glossary-box ul li { margin-bottom: 12px; }
 
         /* FOOTER */
-        footer { background: black; color: white; text-align: center; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid #333; font-size: 0.9rem; }
+        footer { background: black; color: white; text-align: center; padding: 2rem 0; margin-top: 3rem; border-top: 1px solid #333; }
 
-        /* --- MOBILE SPECIFIC TWEAKS --- */
+        /* --- MOBILE SPECIFIC OVERRIDES --- */
         @media (max-width: 768px) {
             .header-content { flex-direction: column; gap: 10px; }
             nav ul { flex-wrap: wrap; justify-content: center; gap: 10px; }
             nav ul li { margin: 0; }
+            
             .hero h2 { font-size: 1.8rem; }
+            
             .section { padding: 2rem 0; }
-            .sim-controls { padding: 1rem; }
+            
+            /* Stack Simulator on Mobile */
+            .sim-container { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .sim-controls { 
+                width: 100%; 
+                max-width: 100%; 
+                padding: 1rem; 
+            }
+            
+            /* Stack Video Grid on Mobile */
+            .video-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
